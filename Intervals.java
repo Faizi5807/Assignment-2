@@ -4,5 +4,6 @@ public class Intervals {
     // I am commiting again
     int h;
     int a;
+    int b;
 
 }
