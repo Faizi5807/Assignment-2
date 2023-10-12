@@ -3,5 +3,6 @@ public class Intervals {
     int d;
     // I am commiting again
     int h;
+    int a;
 
 }
