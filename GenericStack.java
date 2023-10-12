@@ -1,6 +1,4 @@
 
-import java.util.EmptyStackException;
-
 public class GenericStack<T> {
     private class node {
         T data;
@@ -29,12 +27,12 @@ public class GenericStack<T> {
         top = temp;
     }
 
-    public T pop() throws EmptyStackException {
+    public T pop() throws ExceptionHandling.EmptyStackException {
         // check for stack underflow
         if (top == null) {
             // System.out.print("\nStack Underflow");
             // return;
-            throw new EmptyStackException();
+            throw new ExceptionHandling.EmptyStackException();
         }
         node temp = new node();
         temp = top;
@@ -47,7 +45,7 @@ public class GenericStack<T> {
         return top == null;
     }
 
-    public int size() {
+    public int size() throws ExceptionHandling.EmptyStackException {
         if (top != null) {
             node temp = new node();
             temp = top;
@@ -58,9 +56,33 @@ public class GenericStack<T> {
             }
             return Size;
         } else {
-            System.out.println("Empty Stack!");
-            return 0;
+            throw new ExceptionHandling.EmptyStackException();
         }
     }
 
+    public static void main(String[] args) {
+        GenericStack<Integer> intg = new GenericStack<>();
+        try {
+            intg.push(9);
+            intg.push(54);
+            intg.push(11);
+            intg.push(6);
+            System.out.println("Popped Element: " + intg.pop());
+            System.out.println("New Stack size: " + intg.size());
+        } catch (ExceptionHandling.EmptyStackException e) {
+            System.err.println(e.getMessage());
+        }
+
+        GenericStack<String> strg = new GenericStack<>();
+        try {
+            strg.push("Itadori Yuji");
+            strg.push("Panda Senpai");
+            strg.push("Ryoumen Sukuna");
+            strg.push("Light Yagami");
+            System.out.println("Popped: " + strg.pop());
+            System.out.println("Stack size: " + strg.size());
+        } catch (ExceptionHandling.EmptyStackException e) {
+            System.err.println(e.getMessage());
+        }
+    }
 }
